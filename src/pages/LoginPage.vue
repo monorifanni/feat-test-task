@@ -44,6 +44,7 @@
 
 <script setup lang="ts">
 import PageContainer from '@/components/PageContainer.vue'
+import router from '@/router'
 import { ref } from 'vue'
 
 const formData = ref({
@@ -54,6 +55,7 @@ const formData = ref({
 const handleLogin = async () => {
   try {
     console.log(formData.value)
+    await router.push('/user')
   } catch (error) {
     console.log(error)
   }
@@ -62,7 +64,7 @@ const handleLogin = async () => {
 
 <style scoped>
 .title {
-  margin: 4rem 0 2.25rem;
+  margin-bottom: 2.25rem;
 
   h1 {
     font-weight: bold;

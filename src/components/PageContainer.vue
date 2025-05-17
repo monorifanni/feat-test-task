@@ -9,7 +9,9 @@
     <div class="content">
       <div>
         <img alt="feat logo" src="@/assets/feat.svg" />
-        <slot></slot>
+        <div class="slotContainer">
+          <slot></slot>
+        </div>
       </div>
 
       <div class="langSelect">
@@ -47,6 +49,10 @@
   padding: 1rem;
   display: grid;
   grid-template-columns: 4fr 1fr;
+}
+
+.slotContainer {
+  padding-top: 4rem;
 }
 
 .pageContainer {
