@@ -1,0 +1,36 @@
+{
+  "error": {
+    "globalMessage": "An error occured.",
+    "unauthorized": "Your session has expired. Please log in again."
+  },
+  "login": {
+    "joinTitle": "Join to {company}",
+    "subTitle": "See what will going to happen with your life.",
+    "failedToLogin": "Failed to login.",
+    "email": "Email",
+    "password": "Password",
+    "rememberMe": "Remember me",
+    "forgotPassword": "Forgot password",
+    "loginBtn": "Login",
+    "notAppliedYet": "Not Applied Yet?",
+    "createAnAccount": "Create an account",
+    "validation": {
+      "emailRequired": "Email is required.",
+      "isNotValidEmail": "Value is not a valid email address",
+      "passwordRequired": "Password is required."
+    }
+  },
+  "logout": {
+    "logoutBtn": "Logout",
+    "failedToLogout": "Failed to logout."
+  },
+  "user": {
+    "jobTitle": "Job title: ",
+    "features": "Features: "
+  },
+  "mainPage": {
+    "title": "Any program is only as good as it is useful",
+    "subTitle": "The aim is to consistently craft pixel-perfect and high-performance solutions",
+    "greeting": "Hello"
+  }
+}

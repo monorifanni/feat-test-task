@@ -1,14 +1,14 @@
 <template>
   <page-container>
     <div class="title">
-      <h1>Join to <span>feat.</span></h1>
-      <p>See what will going to happen with your life.</p>
+      <h1>{{ t('login.joinTitle', { company: 'feat.' }) }}</h1>
+      <p>{{ t('login.subTitle') }}</p>
     </div>
 
     <form @submit.prevent="handleLogin">
       <div class="fields">
         <div class="field">
-          <label for="email">Email</label>
+          <label for="email">{{ t('login.email') }}</label>
           <input
             id="email"
             name="email"
@@ -24,7 +24,7 @@
         </div>
 
         <div class="field">
-          <label for="password">Password</label>
+          <label for="password">{{ t('login.password') }}</label>
           <input
             id="password"
             name="password"
@@ -42,17 +42,20 @@
       <div class="passwordExtraContent">
         <div class="rememberMe">
           <input type="checkbox" />
-          <span>Remember me</span>
+          <span>{{ t('login.rememberMe') }}</span>
         </div>
 
-        <router-link to="/">Forgot password?</router-link>
+        <router-link to="/">{{ t('login.forgotPassword') }}</router-link>
       </div>
 
-      <button type="submit">Login</button>
+      <button type="submit">{{ t('login.loginBtn') }}</button>
     </form>
 
     <div class="createAcc">
-      <p>Not Applied Yet? <router-link to="/">Create an account</router-link></p>
+      <p>
+        {{ t('login.notAppliedYet') }}
+        <router-link to="/">{{ t('login.createAnAccount') }}</router-link>
+      </p>
     </div>
   </page-container>
 </template>
@@ -65,6 +68,8 @@ import useVuelidate from '@vuelidate/core'
 import { email, helpers, required } from '@vuelidate/validators'
 import { ref } from 'vue'
 import { useToast } from 'vue-toast-notification'
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
 
 const formData = ref({
   email: '',
@@ -73,10 +78,10 @@ const formData = ref({
 
 const rules = {
   email: {
-    required: helpers.withMessage('Email is required.', required),
-    email: helpers.withMessage('Value is not a valid email address', email),
+    required: helpers.withMessage(t('login.validation.emailRequired'), required),
+    email: helpers.withMessage(t('login.validation.isNotValidEmail'), email),
   },
-  password: { required: helpers.withMessage('Password is required', required) },
+  password: { required: helpers.withMessage(t('login.validation.passwordRequired'), required) },
 }
 
 const authStore = useAuthStore()
@@ -92,7 +97,7 @@ const handleLogin = async () => {
       await router.push('/user')
     }
   } catch {
-    $toast.error('Failed to login.', {
+    $toast.error(t('login.failedToLogin'), {
       position: 'top-right',
       duration: 3000,
     })

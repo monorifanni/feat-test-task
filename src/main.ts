@@ -9,12 +9,14 @@ import axios from 'axios'
 import ToastPlugin, { useToast } from 'vue-toast-notification'
 import 'vue-toast-notification/dist/theme-default.css'
 import 'vue-toast-notification/dist/theme-bootstrap.css'
+import i18n from './i18n/index'
 
 const app = createApp(App)
 
 app.use(createPinia())
 app.use(router)
 app.use(ToastPlugin)
+app.use(i18n)
 
 const $toast = useToast()
 
@@ -24,13 +26,13 @@ axios.interceptors.response.use(
     if (error.response) {
       if (error.response.status === 401) {
         router.push('/login')
-        $toast.error('Your session has expired. Please log in again.', {
+        $toast.error(i18n.global.t('error.unauthorized'), {
           position: 'top-right',
           duration: 3000,
         })
       }
     } else {
-      $toast.error('An error occured.', {
+      $toast.error(i18n.global.t('error.globalMessage'), {
         position: 'top-right',
         duration: 3000,
       })

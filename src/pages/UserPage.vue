@@ -2,14 +2,14 @@
   <page-container>
     <div class="descriptionItems">
       <h1>
-        Hello
+        {{ t('mainPage.greeting') }}
         <span>{{ format.fullName(authStore.user?.first_name, authStore.user?.last_name) }}</span
         >!
       </h1>
       <p>
-        Job title: <span>{{ format.valueOrEmpty(authStore.user?.job_tile) }}</span>
+        {{ t('user.jobTitle') }}<span>{{ format.valueOrEmpty(authStore.user?.job_tile) }}</span>
       </p>
-      <p>Features:</p>
+      <p>{{ t('user.features') }}</p>
       <div v-if="authStore.user?.features.length">
         <div v-for="feature in authStore.user?.features" :key="feature.title" class="featureItem">
           <h3 :style="{ color: feature.color }">{{ feature.title }}</h3>
@@ -18,7 +18,7 @@
       </div>
       <div v-else class="featureItem">N/a</div>
 
-      <button @click="handleLogout">Logout</button>
+      <button @click="handleLogout">{{ t('logout.logoutBtn') }}</button>
     </div>
   </page-container>
 </template>
@@ -30,16 +30,18 @@ import { useAuthStore } from '@/stores/auth'
 import format from '@/utils/format'
 import { onMounted } from 'vue'
 import { useToast } from 'vue-toast-notification'
+import { useI18n } from 'vue-i18n'
 
 const authStore = useAuthStore()
 const $toast = useToast()
+const { t } = useI18n()
 
 const handleLogout = async () => {
   try {
     await authStore.logout()
     await router.push('/login')
   } catch {
-    $toast.error('Failed to logout.', {
+    $toast.error(t('logout.failedToLogout'), {
       position: 'top-right',
       duration: 3000,
     })

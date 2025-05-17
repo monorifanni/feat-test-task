@@ -1,0 +1,36 @@
+{
+  "error": {
+    "globalMessage": "Hiba történt.",
+    "unauthorized": "A munkamenet lejárt. Kérlek, jelentkezz be újra."
+  },
+  "login": {
+    "joinTitle": "Csatlakozz a {company}-hez",
+    "subTitle": "Nézd meg, mi fog történni az életeddel.",
+    "failedToLogin": "Sikertelen belépés.",
+    "email": "Email",
+    "password": "Jelszó",
+    "rememberMe": "Emlékezz rám",
+    "forgotPassword": "Elfelejtetted a jelszód?",
+    "loginBtn": "Belépés",
+    "notAppliedYet": "Még nem jelentkeztél?",
+    "createAnAccount": "Hozz létre egy fiókot",
+    "validation": {
+      "emailRequired": "Email kitöltése kötelező",
+      "isNotValidEmail": "Nem megfelelő email cím",
+      "passwordRequired": "Jelszó kitöltése kötelező"
+    }
+  },
+  "logout": {
+    "logoutBtn": "Kijelentkezés",
+    "failedToLogout": "Sikertelen kijelentkezés."
+  },
+  "user": {
+    "jobTitle": "Pozíció: ",
+    "features": "Jellemzők: "
+  },
+  "mainPage": {
+    "title": "Bármelyik program csak annyira jó, amennyire hasznos",
+    "subTitle": "A cél a következetesen pixelre pontos és nagy teljesítményű megoldások készítése",
+    "greeting": "Hello"
+  }
+}

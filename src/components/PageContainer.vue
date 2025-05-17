@@ -5,8 +5,8 @@
       <img src="@/assets/object-1.svg" class="floating-object-1" />
       <img src="@/assets/object-2.svg" class="floating-object-2" />
 
-      <h2>Any program is only as good as it is useful</h2>
-      <h3>The aim is to consistently craft pixel-perfect and high-performance solutions</h3>
+      <h2>{{ t('mainPage.title') }}</h2>
+      <h3>{{ t('mainPage.subTitle') }}</h3>
     </div>
 
     <div class="content">
@@ -18,12 +18,21 @@
       </div>
 
       <div class="langSelect">
-        <div>HU</div>
-        <div>EN</div>
+        <div @click="setLocale('hu')" :class="{ isActive: locale === 'hu' }">HU</div>
+        <div @click="setLocale('en')" :class="{ isActive: locale === 'en' }">EN</div>
       </div>
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+const { t, locale } = useI18n({ useScope: 'global' })
+
+const setLocale = (value: string) => {
+  locale.value = value
+}
+</script>
 
 <style scoped>
 .imgContainer {
@@ -34,6 +43,7 @@
   padding: 0 2rem 2rem;
   position: relative;
   height: max-content;
+  text-align: center;
 }
 
 .image {
@@ -83,6 +93,11 @@
   display: flex;
   gap: 8px;
   justify-content: flex-end;
+  cursor: pointer;
+}
+
+.isActive {
+  font-weight: bold;
 }
 
 .content {
