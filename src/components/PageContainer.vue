@@ -2,6 +2,9 @@
   <div class="pageContainer">
     <div class="imgContainer">
       <img src="@/assets/main-page-image.png" class="image" />
+      <img src="@/assets/object-1.svg" class="floating-object-1" />
+      <img src="@/assets/object-2.svg" class="floating-object-2" />
+
       <h2>Any program is only as good as it is useful</h2>
       <h3>The aim is to consistently craft pixel-perfect and high-performance solutions</h3>
     </div>
@@ -29,10 +32,48 @@
   align-items: center;
   flex-direction: column;
   padding: 0 2rem 2rem;
+  position: relative;
+  height: max-content;
 }
 
 .image {
   width: 496px;
+}
+
+.floating-object-1 {
+  width: 180px;
+  position: relative;
+  animation: float 3s ease-in-out infinite;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  @media (max-width: 992px) {
+    width: 120px;
+  }
+}
+
+.floating-object-2 {
+  width: 100px;
+  position: relative;
+  animation: float 3s ease-in-out infinite;
+  position: absolute;
+  bottom: 0;
+  right: -32px;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-16px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
 }
 
 .langSelect {
