@@ -1,13 +1,18 @@
 /* color palette from <https://github.com/vuejs/theme> */
 :root {
   --vt-c-white: #ffffff;
+  --vt-c-peach: #ffe6c9;
+  --vt-c-rose-1: #ded2d9;
+  --vt-c-rose-2: #73114b;
   --vt-c-black: #181818;
+  --vt-c-grey: #525252;
 }
 
 /* semantic color variables for this project */
 :root {
-  --color-background: var(--vt-c-white);
-  --color-text: var(--vt-c-black);
+  --color-background: var(--vt-c-peach);
+  --color-text: var(--vt-c-grey);
+  --color-border: var(--vt-c-rose-1);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -50,4 +55,61 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+h1 {
+  font-size: 36px;
+  color: var(--vt-c-grey);
+}
+
+h2 {
+  font-size: 32px;
+  font-weight: bold;
+  color: var(--vt-c-rose-2);
+}
+
+h3 {
+  font-size: 20px;
+  color: var(--vt-c-rose-2);
+}
+
+a {
+  color: var(--vt-c-rose-2);
+  text-decoration: none;
+}
+
+p {
+  color: var(text);
+}
+
+/* button */
+button {
+  background-color: var(--vt-c-rose-2);
+  color: var(--vt-c-white);
+  padding: 13px 10px 13px;
+  border: none;
+  border-radius: 6px;
+  width: 100%;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* input fields*/
+input {
+  padding: 13px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 5px;
+}
+
+input:focus {
+  outline-color: var(--vt-c-rose-2);
+}
+
+label {
+  font-size: 14px;
+}
+
+input[type='checkbox'] {
+  accent-color: var(--vt-c-rose-2);
 }
