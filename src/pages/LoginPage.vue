@@ -15,12 +15,27 @@
             type="email"
             placeholder="hello@feat.hu"
             v-model="formData.email"
+            @input="v$.email.$touch"
+            :class="{ inputError: v$.email.$errors.length }"
           />
+          <span v-for="error in v$.email.$errors" :key="error.$uid" class="errorMessage">
+            {{ error.$message }}
+          </span>
         </div>
 
         <div class="field">
           <label for="password">Password</label>
-          <input id="password" name="password" type="password" v-model="formData.password" />
+          <input
+            id="password"
+            name="password"
+            type="password"
+            v-model="formData.password"
+            @input="v$.password.$touch"
+            :class="{ inputError: v$.password.$errors.length }"
+          />
+          <span v-for="error in v$.password.$errors" :key="error.$uid" class="errorMessage">
+            {{ error.$message }}
+          </span>
         </div>
       </div>
 
@@ -46,21 +61,41 @@
 import PageContainer from '@/components/PageContainer.vue'
 import router from '@/router'
 import { useAuthStore } from '@/stores/auth'
+import useVuelidate from '@vuelidate/core'
+import { email, helpers, required } from '@vuelidate/validators'
 import { ref } from 'vue'
+import { useToast } from 'vue-toast-notification'
 
 const formData = ref({
   email: '',
   password: '',
 })
 
+const rules = {
+  email: {
+    required: helpers.withMessage('Email is required.', required),
+    email: helpers.withMessage('Value is not a valid email address', email),
+  },
+  password: { required: helpers.withMessage('Password is required', required) },
+}
+
 const authStore = useAuthStore()
+const v$ = useVuelidate(rules, formData)
+const $toast = useToast()
 
 const handleLogin = async () => {
   try {
-    await authStore.login(formData.value)
-    await router.push('/user')
-  } catch (error) {
-    console.log(error)
+    const isValidForm = await v$.value.$validate()
+
+    if (isValidForm) {
+      await authStore.login(formData.value)
+      await router.push('/user')
+    }
+  } catch {
+    $toast.error('Failed to login.', {
+      position: 'top-right',
+      duration: 3000,
+    })
   }
 }
 </script>

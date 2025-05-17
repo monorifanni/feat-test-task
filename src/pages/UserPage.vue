@@ -29,15 +29,20 @@ import router from '@/router'
 import { useAuthStore } from '@/stores/auth'
 import format from '@/utils/format'
 import { onMounted } from 'vue'
+import { useToast } from 'vue-toast-notification'
 
 const authStore = useAuthStore()
+const $toast = useToast()
 
 const handleLogout = async () => {
   try {
     await authStore.logout()
     await router.push('/login')
-  } catch (error) {
-    console.log(error)
+  } catch {
+    $toast.error('Failed to logout.', {
+      position: 'top-right',
+      duration: 3000,
+    })
   }
 }
 

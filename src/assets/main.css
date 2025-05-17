@@ -6,6 +6,7 @@
   --vt-c-rose-2: #73114b;
   --vt-c-black: #181818;
   --vt-c-grey: #525252;
+  --vt-c-red: red;
 }
 
 /* semantic color variables for this project */
@@ -13,6 +14,7 @@
   --color-background: var(--vt-c-peach);
   --color-text: var(--vt-c-grey);
   --color-border: var(--vt-c-rose-1);
+  --color-error: var(--vt-c-red);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -112,4 +114,17 @@ label {
 
 input[type='checkbox'] {
   accent-color: var(--vt-c-rose-2);
+}
+
+.inputError {
+  border-color: var(--color-error);
+}
+
+.inputError:focus {
+  outline-color: var(--color-error);
+}
+
+.errorMessage {
+  font-size: 12px;
+  color: var(--color-error);
 }
