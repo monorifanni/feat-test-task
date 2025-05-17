@@ -45,6 +45,7 @@
 <script setup lang="ts">
 import PageContainer from '@/components/PageContainer.vue'
 import router from '@/router'
+import { useAuthStore } from '@/stores/auth'
 import { ref } from 'vue'
 
 const formData = ref({
@@ -52,9 +53,11 @@ const formData = ref({
   password: '',
 })
 
+const authStore = useAuthStore()
+
 const handleLogin = async () => {
   try {
-    console.log(formData.value)
+    await authStore.login(formData.value)
     await router.push('/user')
   } catch (error) {
     console.log(error)
